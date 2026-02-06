@@ -3,36 +3,7 @@
     <head>
         <title>Egg Roll Factory</title>
         <link rel="icon" type="image/x-icon" href="favicon.ico">
-        <style>
-            #eggroll {
-                background-color:white;
-                border-color:white;
-                border-style:solid;
-                display:block;
-                margin-left:auto;
-                margin-right:auto;
-                margin-top:50px;
-                margin-bottom:50px;
-            }
-            #eggroll:hover {
-                border-radius:90px;
-                border-color:black;
-                border-width:10px;
-                margin-top:42px;
-                margin-bottom:42px;
-            }
-            img {
-                -webkit-user-drag:none;
-                user-select:none;
-                -moz-user-select:none;
-                -webkit-user-select:none;
-                -ms-user-select:none;
-            }
-            #redbutton {
-                border-color:red;
-                color:red;
-            }
-        </style>
+        <link rel="stylesheet" href="./styles.css">
         <script>
             clicks = Number(localStorage.getItem('clicks'));
             if (Number(localStorage.getItem('cpc')) > 0) {
@@ -213,4 +184,5 @@
         <br>
         <button id="redbutton" onclick="reset()">Reset Progress</button>
     </body>
+
 </html>
