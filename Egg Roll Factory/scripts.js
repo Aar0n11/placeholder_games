@@ -1,4 +1,3 @@
-try{
 function getItem(name) {
     return localStorage.getItem(name);
 }
@@ -168,4 +167,3 @@ function reset() {
     cpcElem.innerHTML=cpc;
     cpsElem.innerHTML=cps;
 }
-} catch(e) {alert(e)}
