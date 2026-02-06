@@ -1,9 +1,9 @@
 function getItem(name) {
-    return localstorage.getItem(name);
+    return localStorage.getItem(name);
 }
 
 function setItem(name, value) {
-    return localstorage.setItem(name, value);
+    return localStorage.setItem(name, value);
 }
 
 let clicks = Number(getItem('clicks'));
