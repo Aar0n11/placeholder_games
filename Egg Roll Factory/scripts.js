@@ -1,17 +1,9 @@
-function getItem(name) {
-  return localStorage.getItem(name);
-}
-
-function setItem(name, value) {
-  localStorage.setItem(name, value);
-}
-
-let clicks = Number(getItem("clicks"));
-let cpc = Number(getItem("cpc")) > 0 ? Number(getItem("cpc")) : 1;
-let cps = Number(getItem("cps"));
-let exp_prog = Number(getItem("exp_prog"));
-let exp_mult = Number(getItem("exp_mult")) > 0 ? Number(getItem("exp_mult")) : 0.5;
-let level = Number(getItem("level")) > 0 ? Number(getItem("level")) : 1;
+let clicks = Number(localStorage.getItem("clicks"));
+let cpc = Number(localStorage.getItem("cpc")) > 0 ? Number(localStorage.getItem("cpc")) : 1;
+let cps = Number(localStorage.getItem("cps"));
+let exp_prog = Number(localStorage.getItem("exp_prog"));
+let exp_mult = Number(localStorage.getItem("exp_mult")) > 0 ? Number(localStorage.getItem("exp_mult")) : 0.5;
+let level = Number(localStorage.getItem("level")) > 0 ? Number(localStorage.getItem("level")) : 1;
 let boomprog = 0;
 
 let levelElem = document.getElementById("level");
@@ -28,8 +20,8 @@ function loadpage() {
   counterElem.innerHTML = Math.floor(clicks);
   cpcElem.innerHTML = cpc;
   cpsElem.innerHTML = cps;
-  if (Number(getItem("to_next_level")) > 0) {
-    toNextLevelElem.innerHTML = getItem("to_next_level");
+  if (Number(localStorage.getItem("to_next_level")) > 0) {
+    toNextLevelElem.innerHTML = localStorage.getItem("to_next_level");
   }
 }
 
@@ -41,7 +33,7 @@ function continuecps() {
   clicks += cps * 0.01;
   exp_prog += cps * 0.01;
   counterElem.innerHTML = Math.floor(clicks);
-  setItem("clicks", clicks);
+  localStorage.setItem("clicks", clicks);
   exp_up();
 }
 
@@ -55,17 +47,17 @@ function clicked() {
   }
 
   counterElem.innerHTML = Math.floor(clicks);
-  setItem("clicks", clicks);
+  localStorage.setItem("clicks", clicks);
   exp_up();
 }
 
 function exp_up() {
-  setItem("exp_prog", exp_prog);
+  localStorage.setItem("exp_prog", exp_prog);
   expCounterElem.innerHTML = Math.floor(exp_prog);
   expElem.style.width = exp_prog * exp_mult + "%";
   if (Number(expCounterElem.innerHTML) > Number(toNextLevelElem.innerHTML)) {
     exp_prog = exp_prog - Number(toNextLevelElem.innerHTML);
-    setItem("exp_prog", exp_prog);
+    localStorage.setItem("exp_prog", exp_prog);
     expCounterElem.innerHTML = Math.floor(exp_prog);
     lvl_up();
     expElem.style.width = exp_prog * exp_mult + "%";
@@ -75,18 +67,18 @@ function exp_up() {
 
 function lvl_up() {
   level++;
-  setItem("level", level);
+  localStorage.setItem("level", level);
   levelElem.innerHTML = level;
   if (level === 2) {
     toNextLevelElem.innerHTML = 1000;
     exp_mult /= 1000;
-    setItem("exp_mult", exp_mult);
-    setItem("to_next_level", Number(toNextLevelElem.innerHTML));
+    localStorage.setItem("exp_mult", exp_mult);
+    localStorage.setItem("to_next_level", Number(toNextLevelElem.innerHTML));
   } else {
     toNextLevelElem.innerHTML = toNextLevelElem.innerHTML + "000";
     exp_mult /= 1000;
-    setItem("exp_mult", exp_mult);
-    setItem("to_next_level", Number(toNextLevelElem.innerHTML));
+    localStorage.setItem("exp_mult", exp_mult);
+    localStorage.setItem("to_next_level", Number(toNextLevelElem.innerHTML));
   }
 }
 
@@ -107,11 +99,11 @@ function upgrade(resourceCost, increment, type) {
     if (type == "cpc") {
       cpc += available * increment;
       cpcElem.innerHTML = cpc;
-      setItem("cpc", cpc);
+      localStorage.setItem("cpc", cpc);
     } else if (type == "cps") {
       cps += available * increment;
       cpsElem.innerHTML = cps;
-      setItem("cps", cps);
+      localStorage.setItem("cps", cps);
     }
   } else if (clicks >= resourceCost) {
     clicks -= resourceCost;
@@ -120,11 +112,11 @@ function upgrade(resourceCost, increment, type) {
     if (type == "cpc") {
       cpc += increment;
       cpcElem.innerHTML = cpc;
-      setItem("cpc", cpc);
+      localStorage.setItem("cpc", cpc);
     } else if (type == "cps") {
       cps += increment;
       cpsElem.innerHTML = cps;
-      setItem("cps", cps);
+      localStorage.setItem("cps", cps);
     }
   } else {
     alert("Not Enough Egg Rolls!");
@@ -142,13 +134,13 @@ function reset() {
   exp_prog = 0;
   exp_mult = 0.5;
   level = 1;
-  setItem("clicks", clicks);
-  setItem("cpc", cpc);
-  setItem("cps", cps);
-  setItem("level", level);
-  setItem("exp_mult", exp_mult);
-  setItem("exp_prog", exp_prog);
-  setItem("to_next_level", 100);
+  localStorage.setItem("clicks", clicks);
+  localStorage.setItem("cpc", cpc);
+  localStorage.setItem("cps", cps);
+  localStorage.setItem("level", level);
+  localStorage.setItem("exp_mult", exp_mult);
+  localStorage.setItem("exp_prog", exp_prog);
+  localStorage.setItem("to_next_level", 100);
   levelElem.innerHTML = level;
   toNextLevelElem.innerHTML = "100";
   counterElem.innerHTML = clicks;
