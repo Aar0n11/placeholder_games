@@ -5,7 +5,7 @@ function getItem(name) {
 function setItem(name, value) {
     return localStorage.setItem(name, value);
 }
-
+try{
 let clicks = Number(getItem('clicks'));
 let cpc = Number(getItem('cpc')) > 0 ? Number(getItem('cpc')) : 1;
 let cps = Number(getItem('cps'));
@@ -22,7 +22,8 @@ let toNextLevelElem = document.getElementById('to_next_level');
 let imageElem = document.getElementById('image');
 let expCounterElem = document.getElementById('exp_counter');
 let expElem = document.getElementById('exp');
-
+}
+catch(e) {alert(e)}
 function loadpage() {
     levelElem.innerHTML=level;
     counterElem.innerHTML=Math.floor(clicks);
