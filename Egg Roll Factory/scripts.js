@@ -6,6 +6,8 @@ function setItem(name, value) {
   localStorage.setItem(name, value);
 }
 
+alert("ji")
+
 let clicks = Number(getItem("clicks"));
 let cpc = Number(getItem("cpc")) > 0 ? Number(getItem("cpc")) : 1;
 let cps = Number(getItem("cps"));
