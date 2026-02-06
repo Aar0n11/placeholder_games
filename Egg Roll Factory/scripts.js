@@ -3,7 +3,7 @@ function getItem(name) {
 }
 
 function setItem(name, value) {
-    return localStorage.setItem(name, value);
+    localStorage.setItem(name, value);
 }
 
 let clicks = Number(getItem('clicks'));
