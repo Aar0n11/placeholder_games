@@ -11,7 +11,7 @@ let cpc = Number(getItem('cpc')) > 0 ? Number(getItem('cpc')) : 1;
 let cps = Number(getItem('cps'));
 let xp_prog = Number(getItem('exp_prog'));
 let exp_mult = Number(getItem('exp_mult')) > 0 ? Number(getItem('exp_mult')) : 0.5;
-let level = Number(getItem('level')) > 0 ? Number(getItem('level')) : 1
+let level = Number(getItem('level')) > 0 ? Number(getItem('level')) : 1;
 let boomprog = 0;
 
 let levelElem = document.getElementById('level');
