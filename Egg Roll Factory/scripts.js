@@ -56,7 +56,7 @@ function exp_up() {
   expCounterElem.innerHTML = Math.floor(exp_prog);
   expElem.style.width = exp_prog * exp_mult + "%";
   if (Number(expCounterElem.innerHTML) > Number(toNextLevelElem.innerHTML)) {
-    exp_prog = exp_prog - Number(toNextLevelElem.innerHTML);
+    exp_prog -= Number(toNextLevelElem.innerHTML);
     localStorage.setItem("exp_prog", exp_prog);
     expCounterElem.innerHTML = Math.floor(exp_prog);
     lvl_up();
@@ -93,14 +93,14 @@ function boom() {
 function upgrade(resourceCost, increment, type) {
   if (document.getElementById("buy_all").checked) {
     var available = Math.floor(clicks / resourceCost);
-    clicks = clicks - resourceCost * available;
+    clicks -= resourceCost * available;
     counterElem.innerHTML = Math.floor(clicks);
 
-    if (type == "cpc") {
+    if (type === "cpc") {
       cpc += available * increment;
       cpcElem.innerHTML = cpc;
       localStorage.setItem("cpc", cpc);
-    } else if (type == "cps") {
+    } else if (type === "cps") {
       cps += available * increment;
       cpsElem.innerHTML = cps;
       localStorage.setItem("cps", cps);
@@ -109,7 +109,7 @@ function upgrade(resourceCost, increment, type) {
     clicks -= resourceCost;
     counterElem.innerHTML = Math.floor(clicks);
 
-    if (type == "cpc") {
+    if (type === "cpc") {
       cpc += increment;
       cpcElem.innerHTML = cpc;
       localStorage.setItem("cpc", cpc);
@@ -124,8 +124,7 @@ function upgrade(resourceCost, increment, type) {
 }
 
 function reset() {
-  if (!confirm("Are you sure you want to reset all of your progress?")) return;
-  if (!confirm("Are you really really sure? (You will not recieve anything.)")) return;
+  if (!confirm("Are you sure you want to reset all of your progress?") && !confirm("Are you really really sure? (You will not receive anything.)")) return;
 
   clicks = 0;
   cpc = 1;
